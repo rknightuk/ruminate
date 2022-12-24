@@ -11,7 +11,7 @@
   "episode": {
     "defaultDescription": "The latest episode of Ruminate."
   },
-  "image": "TODO",
+  "image": "https://ruminatepod.s3-us-west-2.amazonaws.com/cover.png",
   "url": "https://ruminatepodcast.com",
   "keywords": "tech, culture, games"
 }
