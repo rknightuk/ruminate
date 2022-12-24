@@ -2,7 +2,7 @@
 permalink: "/feed.xml"
 ---
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" version="2.0">
   <channel>
     <generator>Eleventy</generator>
     <title>{{ podcast.title }}</title>
@@ -38,7 +38,7 @@ permalink: "/feed.xml"
             <author>{{ podcast.author }}</author>
             <link>{{ podcast.url }}</link>
             <content:encoded><![CDATA[ {{ episode.templateContent | safe }} ]]></content:encoded>
-            <enclosure length="10993430" type="audio/mpeg" url="{{ episode.data.url }}"/>
+            <enclosure length="{{ episode.data.length }}" type="audio/mpeg" url="{{ episode.data.file }}"/>
             <itunes:title>{{ episode.data.title }}</itunes:title>
             <itunes:author>{{ podcast.author }}</itunes:author>
             <itunes:duration>{{ episode.data.duration }}</itunes:duration>
