@@ -1,0 +1,12 @@
+---
+title: Ruminate Podcast
+layout: base
+---
+
+{%- for episode in collections.episodes %}
+    <div class="container">
+        <h2><a href="/{{ episode.data.episodeNumber }}">{{ episode.data.title }}</a></h2>
+        <p class="date">{{ episode.data.published | dateForEpisode }} / {{ episode.data.duration }}</p>
+        <p>{{ episode.data.summary }}</p>
+    </div>
+{% endfor %}

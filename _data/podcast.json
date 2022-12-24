@@ -1,0 +1,17 @@
+{
+  "title": "Ruminate Podcast",
+  "description": "A podcast about what's on our minds.",
+  "category": "Technology",
+  "author": "Robb Knight and John Voorhees",
+  "owner": {
+    "name": "Robb Knight",
+    "email": "desk@rknight.me"
+  },
+  "feedPath": "https://ruminatepodcast.com/feed.xml",
+  "episode": {
+    "defaultDescription": "The latest episode of Ruminate."
+  },
+  "image": "TODO",
+  "url": "https://ruminatepodcast.com",
+  "keywords": "tech, culture, games"
+}

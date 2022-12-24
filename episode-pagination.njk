@@ -1,11 +1,12 @@
 ---
-title: Ruminate Podcast
 layout: base
+pagination:
+  data: collections.episodes
+  size: 5
+permalink: episodes/page-{{ pagination.pageNumber + 1 }}/index.html
 ---
 
-{% set episodeList = collections.episodes | limit(5) %}
-
-{%- for episode in episodeList %}
+{%- for episode in pagination.items %}
     <div class="container">
         <h2><a href="/{{ episode.data.episodeNumber }}">{{ episode.data.title }}</a></h2>
         <p class="date">{{ episode.data.published | dateForEpisode }} / {{ episode.data.duration }}</p>
@@ -17,8 +18,7 @@ layout: base
     </div>
 {% endfor %}
 
-
 <div class="pagination">
-    <div>Newer Episodes</div>
-    <div><a href="/episodes/page-2">Older Episodes</a></div>
+    <div>{% if pagination.href.previous %}<a href="{{ pagination.href.previous }}">Newer Episodes</a>{% else %}Newer Episodes{% endif %}</div>
+    <div>{% if pagination.href.next %}<a href="{{ pagination.href.next }}">Older Episodes</a>{% else %}Older Episodes{% endif %}</div>
 </div>

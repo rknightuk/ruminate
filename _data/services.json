@@ -27,6 +27,6 @@
         "name": "RSS",
         "key": "rss",
         "color": "#F29637",
-        "link": "https://ruminatepodcast.com/feed.xml"
+        "link": "/feed.xml"
     }
 ]

@@ -46,7 +46,7 @@ guid: ${episode.guid['$t']}
 title: "${episode.title}"
 published: "${episode.pubDate}"
 permalink: ${episodeNumber}/index.html
-file: ${episode.enclosure.url}
+file: "https://ruminatepod.s3-us-west-2.amazonaws.com/${paddedEpisodeNumber}.mp3"
 length: ${episode.enclosure.length}
 duration: ${episode['itunes:duration']}
 summary: "${episode['itunes:summary']}"

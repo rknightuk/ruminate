@@ -1,0 +1,52 @@
+---
+permalink: "/feed.xml"
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <generator>Eleventy</generator>
+    <title>{{ podcast.title }}</title>
+    <description>{{ podcast.description }}</description>
+    <copyright>{{ podcast.author }}</copyright>
+    <language>en</language>
+    <pubDate>{{ collections.episodes | collectionLastUpdatedDate }}</pubDate>
+    <lastBuildDate>{{ collections.episodes | collectionLastUpdatedDate }}</lastBuildDate>
+    <image>
+        <link>{{ podcast.url }}</link>
+        <title>{{ podcast.title }}</title>
+        <url>{{ podcast.image }}</url>
+    </image>
+    <link>{{ podcast.url }}</link>
+    <itunes:type>episodic</itunes:type>
+    <itunes:summary>{{ podcast.description }}</itunes:summary>
+    <itunes:author>{{ podcast.author }}</itunes:author>
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:image href="{{ podcast.image }}"/>
+    <itunes:new-feed-url>{{ podcast.feedPath }}</itunes:new-feed-url>
+    <itunes:keywords>{{ podcast.keywords }}</itunes:keywords>
+    <itunes:owner>
+        <itunes:name>{{ podcast.owner.name }}</itunes:name>
+        <itunes:email>{{ podcast.owner.email }}</itunes:email>
+    </itunes:owner>
+    <itunes:category text="{{ podcast.category }}"/>
+    {%- for episode in collections.episodes %}
+        <item>
+            <guid isPermaLink="false">{{ episode.data.guid }}</guid>
+            <title>{{ episode.data.title | xmlEscape }}</title>
+            <description><![CDATA[ {{ episode.templateContent | safe }} ]]></description>
+            <pubDate>{{ episode.data.published }}</pubDate>
+            <author>{{ podcast.author }}</author>
+            <link>{{ podcast.url }}</link>
+            <content:encoded><![CDATA[ {{ episode.templateContent | safe }} ]]></content:encoded>
+            <enclosure length="10993430" type="audio/mpeg" url="{{ episode.data.url }}"/>
+            <itunes:title>{{ episode.data.title }}</itunes:title>
+            <itunes:author>{{ podcast.author }}</itunes:author>
+            <itunes:duration>{{ episode.data.duration }}</itunes:duration>
+            <itunes:summary>{{ episode.data.summary }}</itunes:summary>
+            <itunes:subtitle>{{ episode.data.summary }}</itunes:subtitle>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:episodeType>full</itunes:episodeType>
+        </item>
+    {% endfor %}
+  </channel>
+</rss>
