@@ -5,7 +5,7 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy("assets")
 
     eleventyConfig.addCollection("episodes", function(collection) {
-        return collection.getFilteredByGlob("episodes/**/*.md").sort((a, b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0))
+        return collection.getFilteredByGlob("episodes/**/*.md").sort((a, b) => (a.title < b.title) ? 1 : ((b.title < a.title) ? -1 : 0))
     })
 
     eleventyConfig.addFilter('dateForEpisode', function(date) {
