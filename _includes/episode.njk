@@ -1,0 +1,16 @@
+---
+layout: base
+---
+
+<div class="container">
+    <h2>{{ title }}</h2>
+    <p class="date">{{ published | dateForEpisode }} / {{ duration }}</p>
+
+    <audio controls>
+        <source src="{{ file }}" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    {{ content | safe }}
+
+</div>

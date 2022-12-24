@@ -1,0 +1,21 @@
+{
+  "name": "ruminate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/.bin/eleventy --serve",
+    "build": "rm -rf _site/* && ./node_modules/.bin/eleventy"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@11ty/eleventy": "^1.0.2",
+    "node-fetch": "^3.3.0",
+    "turndown": "^7.1.1",
+    "uuid": "^9.0.0",
+    "xml2json": "^0.12.0"
+  }
+}

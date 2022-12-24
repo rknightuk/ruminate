@@ -1,0 +1,32 @@
+[
+    {
+        "name": "Apple Podcasts",
+        "key": "apple",
+        "color": "#8C2EC3",
+        "link": "https://podcasts.apple.com/gb/podcast/ruminate-podcast/id1033235350"
+    },
+    {
+        "name": "Overcast",
+        "key": "overcast",
+        "color": "#FC7E0F",
+        "link": "https://overcast.fm/itunes1033235350/ruminate-podcast"
+    },
+    {
+        "name": "Pocketcasts",
+        "key": "pocketcasts",
+        "color": "#F43E37",
+        "link": "https://pca.st/ruminate"
+    },
+    {
+        "name": "Castro",
+        "key": "castro",
+        "color": "#00B265",
+        "link": "https://castro.fm/itunes/1033235350"
+    },
+    {
+        "name": "RSS",
+        "key": "rss",
+        "color": "#F29637",
+        "link": "https://ruminatepodcast.com/feed.xml"
+    }
+]
