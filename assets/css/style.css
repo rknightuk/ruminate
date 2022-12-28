@@ -92,6 +92,13 @@ audio {
     height: 30px;
 }
 
+.subscribe .rss {
+    width: 25px;
+    height: 25px;
+}
+
+
+
 footer {
     text-align: center;
 }
