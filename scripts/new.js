@@ -11,7 +11,8 @@ const filename = `${paddedEpisodeNumber}.mp3`
 
 const tags = id3.read(filename)
 const title = tags.title || `${episodeNumber} - TODO title`
-const summary = tags.userDefinedText[0].value
+const summary = tags.comment.text
+console.log(summary)
 
 const stats = fs.statSync(filename)
 const length = stats.size;
