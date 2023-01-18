@@ -38,7 +38,7 @@
 
         <div class="subscribe">
             {%- for service in services %}
-                <a class="subscribe-button" href="{{ service.link }}" style="border: 2px solid {{ service.color }}; color: {{ service.color }}">
+                <a class="subscribe-button" href="{{ service.link }}" style="border: 2px solid {{ service.color }}; color: {{ service.color }}" rel="me">
                     <svg class="icon {{ service.key }}" style="fill: {{ service.color }}">
                         <use xlink:href="#{{ service.key }}"></use>
                     </svg>
