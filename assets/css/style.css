@@ -75,6 +75,7 @@ audio {
     justify-content: space-evenly;
     flex-wrap: wrap;
     margin: 10px;
+    justify-content: space-around;
 }
 
 .subscribe-button {
@@ -84,6 +85,7 @@ audio {
     padding: 5px 10px;
     border-radius: 30px;
     background-color: var(--background);
+    flex-basis: 33%;
 }
 
 .subscribe .icon {

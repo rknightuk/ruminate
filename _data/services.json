@@ -1,9 +1,9 @@
 [
     {
-        "name": "Apple Podcasts",
-        "key": "apple",
-        "color": "#8C2EC3",
-        "link": "https://podcasts.apple.com/gb/podcast/ruminate-podcast/id1033235350"
+        "name": "@ruminate",
+        "key": "mastodon",
+        "color": "#5749D5",
+        "link": "https://masthead.social/@ruminate"
     },
     {
         "name": "Overcast",
@@ -16,6 +16,12 @@
         "key": "pocketcasts",
         "color": "#F43E37",
         "link": "https://pca.st/ruminate"
+    },
+    {
+        "name": "Apple Podcasts",
+        "key": "apple",
+        "color": "#8C2EC3",
+        "link": "https://podcasts.apple.com/gb/podcast/ruminate-podcast/id1033235350"
     },
     {
         "name": "Castro",
