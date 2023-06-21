@@ -9,11 +9,13 @@ layout: base
     <div class="container">
         <h2><a href="/{{ episode.data.episodeNumber }}">{{ episode.data.title }}</a></h2>
         <p class="date">{{ episode.data.published | dateForEpisode }} / {{ episode.data.duration }}</p>
-        <p>{{ episode.data.summary }}</p>
         <audio controls>
             <source src="{{ episode.data.file }}" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
+        {% if loop.index > 1 %}
+            <p>{{ episode.data.summary }}</p>
+        {% endif %}
         {% if loop.index === 1 %}
             {{ episode.templateContent | safe }}
         {% endif %}

@@ -9,7 +9,12 @@
 
 		<meta name="generator" content="{{ eleventy.generator }}">
 
-		<title>{{ title }}</title>
+		<title>
+            {% if guid %}
+                Ruminate Podcast - 
+            {% endif %}
+            {{ title }}
+        </title>
 
 		<link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
 
