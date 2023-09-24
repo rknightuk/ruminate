@@ -20,6 +20,8 @@
 
         <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
 
+        <link rel="alternate" type="application/rss+xml" title="{{ podcast.title }} RSS Feed" href="{{ podcast.feedPath }}" />
+
 		<meta property="og:title" content="{{ title }}" />
 		<meta property="og:description" content="{% if excerpt %}{{ excerpt}}{% else %}Ruminate - {{ title }}{% endif %}" />
 		<meta property="og:type" content="website" />
