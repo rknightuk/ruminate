@@ -38,7 +38,7 @@ permalink: "/feed.xml"
             <author>{{ podcast.author }}</author>
             <link>{{ podcast.url}}{{ episode.url }}</link>
             <content:encoded><![CDATA[ {{ episode.templateContent | safe }} ]]></content:encoded>
-            <enclosure length="{{ episode.data.length }}" type="audio/mpeg" url="{{ episode.data.file }}"/>
+            <enclosure length="{{ episode.data.length }}" type="audio/mpeg" url="https://op3.dev/e,pg=375cd521-835a-5bd1-b747-1fed411c228b/{{ episode.data.file }}"/>
             <itunes:title>{{ episode.data.title }}</itunes:title>
             <itunes:author>{{ podcast.author }}</itunes:author>
             <itunes:duration>{{ episode.data.duration }}</itunes:duration>
