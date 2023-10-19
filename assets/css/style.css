@@ -3,20 +3,14 @@
     --light-color: #EFEFEF;
     --body-text: #343a40;
     --primary: #12b886;
-    --primary-subtle: #63e6be;
+    --primary-subtle: #18816a;
     --border-subtle: #d2d2d2;
-    font-family: 'Inter', sans-serif;
 }
 
 * { box-sizing: border-box; }
 
-@supports (font-variation-settings: normal) {
-    :root {
-        font-family: 'Inter var', sans-serif;
-    }
-}
-
 body {
+    font-family: 'Atkinson Hyperlegible', sans-serif;
     background-color: var(--background);
     margin: 0 auto;
     max-width: 700px;
