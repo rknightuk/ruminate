@@ -108,3 +108,31 @@ pre {
     background: white;
     padding: 5px;
 }
+
+.embed-container {
+    border: 1px solid black;
+    max-height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.embed-meta {
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.embed-meta .image {
+    max-width: 100px;
+    margin-right: 10px;
+}
+
+.embed-meta img {
+    max-height: 100%;
+}
+
+.embed-player {
+    width: 100%;
+}

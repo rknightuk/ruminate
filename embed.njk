@@ -1,0 +1,27 @@
+---
+pagination:
+  data: collections.episodes
+  size: 1
+  alias: episode
+permalink: 'embed/{{ episode.data.guid }}/index.html'
+layout: embed
+---
+
+<div class="embed-container container">
+    <div class="embed-meta">
+        <div class="image">
+            <img src="{{ podcast.imageEmbed }}" alt="{{ episode.data.title }}">
+        </div>
+        <div>
+            <h2><a href="/{{ episode.data.episodeNumber }}">{{ episode.data.title }}</a></h2>
+            <p class="date"><strong><a href="/">{{ podcast.title }}</strong></a> &bull; {{ episode.data.published | dateForEpisode }}</p>
+        </div>
+    </div>
+
+    <div>
+    <audio controls>
+        <source src="https://op3.dev/e,pg=375cd521-835a-5bd1-b747-1fed411c228b/{{ episode.data.file }}" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    </div>
+</div>

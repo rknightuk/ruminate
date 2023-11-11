@@ -12,6 +12,7 @@
     "defaultDescription": "The latest episode of Ruminate."
   },
   "image": "https://ruminatepod.s3-us-west-2.amazonaws.com/cover-v3.png",
+  "imageEmbed": "https://ruminatepod.s3-us-west-2.amazonaws.com/cover-v3-small.png",
   "url": "https://ruminatepodcast.com",
   "keywords": "tech, culture, games"
 }
