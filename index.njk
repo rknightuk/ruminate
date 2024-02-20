@@ -13,9 +13,7 @@ layout: base
             <source src="https://op3.dev/e,pg=375cd521-835a-5bd1-b747-1fed411c228b/{{ episode.data.file }}" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
-        {% if loop.index > 1 %}
-            <p>{{ episode.data.summary }}</p>
-        {% endif %}
+        <p>{{ episode.data.summary }}</p>
         {% if loop.index === 1 %}
             {{ episode.templateContent | safe }}
         {% endif %}
