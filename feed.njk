@@ -46,6 +46,7 @@ permalink: "/feed.xml"
             <itunes:subtitle>{{ episode.data.summary }}</itunes:subtitle>
             <itunes:explicit>no</itunes:explicit>
             <itunes:episodeType>full</itunes:episodeType>
+            <itunes:episode>{{ episode.data.episodeNumber }}</itunes:episode>
         </item>
     {% endfor %}
   </channel>
