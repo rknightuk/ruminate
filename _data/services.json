@@ -33,12 +33,6 @@
         "name": "RSS",
         "key": "rss",
         "color": "#F29637",
-        "link": "https://feeds.libsyn.com/517508/rss"
-    },
-    {
-        "name": "RSS-new",
-        "key": "rss",
-        "color": "#F29637",
         "link": "/feed.xml"
     }
 ]
