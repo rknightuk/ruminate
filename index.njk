@@ -10,7 +10,7 @@ layout: base
         <h2><a href="/{{ episode.data.episodeNumber }}">{{ episode.data.title }}</a></h2>
         <p class="date">{{ episode.data.published | dateForEpisode }} / {{ episode.data.duration }}</p>
         <audio controls>
-            <source src="https://op3.dev/e,pg=375cd521-835a-5bd1-b747-1fed411c228b/{{ episode.data.file }}" type="audio/mpeg">
+            <source src="https://op3.dev/e,pg=375cd521-835a-5bd1-b747-1fed411c228b/https://cdn.rknight.me/podcasts/ruminate/episodes/{{ episode.data.file }}" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
         <p>{{ episode.data.summary }}</p>

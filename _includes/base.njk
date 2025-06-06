@@ -5,16 +5,11 @@
 		<meta charset="UTF-8" />
 
 		<meta name="viewport" content="width=device-width" />
-		<meta name="Description" content="{{ title }}">
+		<meta name="description" content="{% if episode.guid %}{{ episode.summary | safe }}{% else %}{{ podcast.description }}{% endif %}">
 
 		<meta name="generator" content="{{ eleventy.generator }}">
 
-		<title>
-            {% if guid %}
-                Ruminate Podcast - 
-            {% endif %}
-            {{ title }}
-        </title>
+		<title>{% if episode.guid %}Ruminate Podcast: {% endif %}{{ title }}{{ episode.title }}</title>
 
 		<link rel="stylesheet" href="/assets/css/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
 
@@ -22,32 +17,45 @@
 
         <link rel="alternate" type="application/rss+xml" title="{{ podcast.title }} RSS Feed" href="{{ podcast.feedPath }}" />
 
-		<meta property="og:title" content="{{ title }}" />
-		<meta property="og:description" content="{% if excerpt %}{{ excerpt}}{% else %}Ruminate - {{ title }}{% endif %}" />
+		<meta property="og:title" content="{% if episode.guid %}Ruminate Podcast: {% endif %}{{ title }}{{ episode.title }}" />
+		<meta property="og:description" content="{% if episode.guid %}{{ episode.summary | safe }}{% else %}{{ podcast.description }}{% endif %}" />
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content="https://ruminatepodcast.com/" />
-        <meta property="og:image" content="https://ruminatepodcast.com/assets/img/cover.png">
+        <meta property="og:image" content="https://cdn.macstories.net/ruminate/coverv3.png">
 
-		<meta itemprop="name" content="{{ title }}">
-		<meta itemprop="description" content="{% if excerpt %}{{ excerpt}}{% else %}Ruminate - {{ title }}{% endif %}">
+		<meta itemprop="name" content="{% if episode.guid %}Ruminate Podcast: {% endif %}{{ title }}{{ episode.title }}">
+		<meta itemprop="description" content="{% if episode.guid %}{{ episode.summary | safe }}{% else %}{{ podcast.description }}{% endif %}">
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=atkinson-hyperlegible:400,400i,700,700i" rel="stylesheet" />
-
-        <script src="https://cdn.usefathom.com/script.js" data-site="NUCBNZVW" defer></script>
 	</head>
 	<body>
         <a style="display:none" rel="me" href="https://social.lol/@robb"></a>
+        <a style="display:none" rel="me" href="https://mastodon.macstories.net/@johnvoorhees"></a>
+        <a style="display:none" rel="me" href="https://mastodon.macstories.net/@macstories"></a>
+        <a style="display:none" rel="me" href="https://social.lol/@ruminate"></a>
 
         <header>
-            <h1><a href="/">Ruminate Podcast</a></h1>
-            <img class="cover" src="/assets/img/cover.png">
-            <p>A fortnightly podcast about what’s on our mind</p>
+            <div class="header__wrap">
+                <div class="header__main">
+                    <div>
+                        <img class="cover" src="https://cdn.macstories.net/ruminate/cover_smallv3.png">
+                    </div>
+                    <div class="header__info">
+                        <h1><a href="/">{{ podcast.title }}</a></h1>
+                        <p class="header__subtitle">{{ podcast.description }}</p>
+                        <p>Hosted by <a href="https://rknight.me">Robb Knight</a> and <a href="https://www.macstories.net/author/johnvoorhees/">John Voorhees</a></p>
+                        <p><a href="https://social.lol/@ruminate">@ruminate@social.lol</a> on the 'don</p>
+                    </div>
+                </div>
+            </div>
         </header>
+
+        <div class="content">
 
         <div class="subscribe">
             {%- for service in services %}
-                <a class="subscribe-button" href="{{ service.link }}" style="border: 2px solid {{ service.color }}; color: {{ service.color }}" rel="me">
+                <a class="subscribe-button" href="{{ service.link }}" style="color: {{ service.color }}" rel="me">
                     <svg class="icon {{ service.key }}" style="fill: {{ service.color }}">
                         <use xlink:href="#{{ service.key }}"></use>
                     </svg>
@@ -59,8 +67,10 @@
         {{ content | safe }}
 
         <footer>
-            <p>Ruminate - A podcast by <a href="https://rknight.me">Robb Knight</a> and <a href="https://www.macstories.net/author/johnvoorhees/">John Voorhees</a></p>
+            <p>Ruminate is a <a href="https://macstories.net/podcasts">MacStories podcast</a> hosted by <a href="https://rknight.me">Robb Knight</a> and <a href="https://www.macstories.net/author/johnvoorhees/">John Voorhees</a></p>
         </footer>
+
+        </div>
 
         <svg width="0" height="0" class="hidden">
             <symbol id="apple" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#8831C1" d="M267.429 488.563C262.286 507.573 242.858 512 224 512c-18.857 0-38.286-4.427-43.428-23.437C172.927 460.134 160 388.898 160 355.75c0-35.156 31.142-43.75 64-43.75s64 8.594 64 43.75c0 32.949-12.871 104.179-20.571 132.813zM156.867 288.554c-18.693-18.308-29.958-44.173-28.784-72.599 2.054-49.724 42.395-89.956 92.124-91.881C274.862 121.958 320 165.807 320 220c0 26.827-11.064 51.116-28.866 68.552-2.675 2.62-2.401 6.986.628 9.187 9.312 6.765 16.46 15.343 21.234 25.363 1.741 3.654 6.497 4.66 9.449 1.891 28.826-27.043 46.553-65.783 45.511-108.565-1.855-76.206-63.595-138.208-139.793-140.369C146.869 73.753 80 139.215 80 220c0 41.361 17.532 78.7 45.55 104.989 2.953 2.771 7.711 1.77 9.453-1.887 4.774-10.021 11.923-18.598 21.235-25.363 3.029-2.2 3.304-6.566.629-9.185zM224 0C100.204 0 0 100.185 0 224c0 89.992 52.602 165.647 125.739 201.408 4.333 2.118 9.267-1.544 8.535-6.31-2.382-15.512-4.342-30.946-5.406-44.339-.146-1.836-1.149-3.486-2.678-4.512-47.4-31.806-78.564-86.016-78.187-147.347.592-96.237 79.29-174.648 175.529-174.899C320.793 47.747 400 126.797 400 224c0 61.932-32.158 116.49-80.65 147.867-.999 14.037-3.069 30.588-5.624 47.23-.732 4.767 4.203 8.429 8.535 6.31C395.227 389.727 448 314.187 448 224 448 100.205 347.815 0 224 0zm0 160c-35.346 0-64 28.654-64 64s28.654 64 64 64 64-28.654 64-64-28.654-64-64-64z"/></symbol>

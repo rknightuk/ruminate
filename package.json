@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@11ty/eleventy": "^1.0.2",
+    "@11ty/eleventy": "^3.1.1",
     "lodash.escape": "^4.0.1",
     "mp3-duration": "^1.1.0",
     "node-fetch": "^3.3.0",
