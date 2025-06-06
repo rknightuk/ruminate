@@ -1,10 +1,9 @@
 import { v4 as uuidv4 } from 'uuid'
 import fs from 'fs'
+import https from 'https'
 import mp3Duration from 'mp3-duration'
 import id3 from 'node-id3'
-import { fileTypeFromFile } from 'file-type'
 import dotenv from 'dotenv'
-import AWS from 'aws-sdk'
 dotenv.config()
 
 const args = process.argv.slice(2)
@@ -34,11 +33,12 @@ guid: ${uuidv4()}
 title: "${title}"
 published: "${pubDate}"
 permalink: ${episodeNumber}/index.html
-file: "https://ruminatepod.s3-us-west-2.amazonaws.com/${paddedEpisodeNumber}.mp3"
+file: "${paddedEpisodeNumber}.mp3"
 length: ${length}
 duration: ${duration}
 summary: "${summary}"
 episodeNumber: ${episodeNumber}
+poster: "${paddedEpisodeNumber}.jpg"
 ---`
 
 fs.writeFile(`episodes/${paddedEpisodeNumber}.md`, content, function (err) {
@@ -46,32 +46,39 @@ fs.writeFile(`episodes/${paddedEpisodeNumber}.md`, content, function (err) {
     console.log(`Created episode ${paddedEpisodeNumber} successfully.`);
 })
 
-AWS.config.update({
-    region: 'us-east-1',
-    accessKeyId: process.env.AWSACCESS,
-    secretAccessKey: process.env.AWSSECRET,
-})
-const s3 = new AWS.S3({apiVersion: '2006-03-01'})
+const BASE_HOSTNAME = 'storage.bunnycdn.com';
+const HOSTNAME = BASE_HOSTNAME;
+const STORAGE_ZONE_NAME = process.env.BUNNY_ZONE;
+const FILENAME_TO_UPLOAD = `podcasts/ruminate/episodes/${filename}`;
+const FILE_PATH = filename;
+const ACCESS_KEY = process.env.BUNNY_KEY;
 
+const uploadFile = async () => {
+  const readStream = fs.createReadStream(FILE_PATH);
 
-const { mime } = await fileTypeFromFile(filename)
-const fileStream = fs.createReadStream(filename)
-fileStream.on('error', function(err) {
-    console.log('File Error', err)
-})
-const uploadParams = {
-    Bucket: 'ruminatepod',
-    Body: fileStream,
-    Key: filename,
-    ACL: 'public-read',
-    ContentType: mime,
-}
+  const options = {
+    method: 'PUT',
+    host: HOSTNAME,
+    path: `/${STORAGE_ZONE_NAME}/${FILENAME_TO_UPLOAD}`,
+    headers: {
+      AccessKey: ACCESS_KEY,
+      'Content-Type': 'application/octet-stream',
+    },
+  };
 
-s3.upload(uploadParams, function (err, data) {
-    if (err) {
-        console.log("Error", err)
-    }
-    if (data) {
-        console.log("Upload Success", data.Location)
-    }
-})
+  const req = https.request(options, (res) => {
+    res.on('data', (chunk) => {
+      console.log(chunk.toString('utf8'));
+    });
+  });
+
+  req.on('error', (error) => {
+    console.error(error);
+  });
+
+  readStream.pipe(req);
+};
+
+await uploadFile()
+
+console.log('File uploaded')
