@@ -6,7 +6,7 @@ layout: base
     <h2>{{ title }}</h2>
     <p class="date">{{ published | dateForEpisode }} / {{ duration }}</p>
 
-    <audio controls>
+    <audio controls preload="none">
         <source src="https://op3.dev/e,pg=375cd521-835a-5bd1-b747-1fed411c228b/https://cdn.rknight.me/podcasts/ruminate/episodes/{{ file }}" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
