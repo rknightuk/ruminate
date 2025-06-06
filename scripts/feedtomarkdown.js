@@ -6,7 +6,7 @@ const turndownForWhat = new TurndownService()
 
 async function getEpisodes() {
   try {
-    const response = await fetch('https://feeds.simplecast.com/7Rzwf7P6');
+    const response = await fetch('https://feeds.libsyn.com/517508/rss');
 
     if (!response.ok) {
       throw new Error(`Error! status: ${response.status}`);
@@ -22,7 +22,7 @@ async function getEpisodes() {
 let episodes = await getEpisodes()
 episodes = xml2Json.toJson(episodes, { object: true }).rss.channel.item
 
-const filenames = episodes.map(episode => {
+const filenames = episodes.forEach(episode => {
     let episodeNumber = null
     if (episode.title.includes(': '))
     {
@@ -33,7 +33,11 @@ const filenames = episodes.map(episode => {
 
     if (episode.title === '35 - Holiday Spectacular 2: Electric Boogaloo')
     {
-        episodeNumber = '35'
+        episodeNumber = 35
+    }
+
+    if (episodeNumber < 180) {
+        return;
     }
 
     const paddedEpisodeNumber = episodeNumber.toString().padStart(3, '0')
@@ -46,10 +50,10 @@ guid: ${episode.guid['$t']}
 title: "${episode.title}"
 published: "${episode.pubDate}"
 permalink: ${episodeNumber}/index.html
-file: "https://ruminatepod.s3-us-west-2.amazonaws.com/${paddedEpisodeNumber}.mp3"
+file: "${paddedEpisodeNumber}.mp3"
 length: ${episode.enclosure.length}
 duration: ${episode['itunes:duration']}
-summary: "${episode['itunes:summary']}"
+summary: "${episode['itunes:subtitle']}"
 episodeNumber: ${episodeNumber}
 ---
 
@@ -61,17 +65,17 @@ ${description}
         console.log(`Created episode ${paddedEpisodeNumber} successfully.`);
     })
 
-    return {
-        file: episode.enclosure.url,
-        number: paddedEpisodeNumber,
-    }
+    // return {
+    //     file: episode.enclosure.url,
+    //     number: paddedEpisodeNumber,
+    // }
 })
 
-const filenamesForDownload = `#!/bin/bash\n${filenames.map(fn => {
-    return `wget ${fn.file} -O ${fn.number}.mp3`
-}).join("\n")}`
+// const filenamesForDownload = `#!/bin/bash\n${filenames.map(fn => {
+//     return `wget ${fn.file} -O ${fn.number}.mp3`
+// }).join("\n")}`
 
-fs.writeFile(`episodes/filenames.sh`, filenamesForDownload, function (err) {
-    if (err) throw err;
-    console.log(`Created filenames file successfully.`);
-})
+// fs.writeFile(`episodes/filenames.sh`, filenamesForDownload, function (err) {
+//     if (err) throw err;
+//     console.log(`Created filenames file successfully.`);
+// })
