@@ -29,6 +29,7 @@ permalink: "/feed.xml"
         <itunes:email>{{ podcast.owner.email }}</itunes:email>
     </itunes:owner>
     <itunes:category text="{{ podcast.category }}"/>
+    <itunes:applepodcastsverify>26f05c10-5044-11f0-b7ac-37b1c324c77d</itunes:applepodcastsverify>
     {%- for episode in collections.episodes %}
         <item>
             <guid isPermaLink="false">{{ episode.data.guid }}</guid>
