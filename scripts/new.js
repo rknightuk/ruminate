@@ -38,7 +38,6 @@ length: ${length}
 duration: ${duration}
 summary: "${summary}"
 episodeNumber: ${episodeNumber}
-poster: "${paddedEpisodeNumber}.jpg"
 ---`
 
 fs.writeFile(`episodes/${paddedEpisodeNumber}.md`, content, function (err) {
