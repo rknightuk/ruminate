@@ -38,7 +38,9 @@ length: ${length}
 duration: ${duration}
 summary: "${summary}"
 episodeNumber: ${episodeNumber}
----`
+---
+
+${summary}`
 
 fs.writeFile(`episodes/${paddedEpisodeNumber}.md`, content, function (err) {
     if (err) throw err;
